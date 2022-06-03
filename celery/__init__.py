@@ -113,6 +113,7 @@ def _patch_eventlet():
 def _patch_gevent():
     import gevent
     from gevent import monkey, signal as gevent_signal
+    from psycogreen.gevent import patch_psycopg
 
     monkey.patch_all()
     if gevent.version_info[0] == 0:  # pragma: no cover
@@ -120,6 +121,7 @@ def _patch_gevent():
         # and aren't monkey patched by patch_all()
         _signal = __import__('signal')
         _signal.signal = gevent_signal
+    patch_psycopg()
 
 
 def maybe_patch_concurrency(argv=None, short_opts=None,
