@@ -111,6 +111,7 @@ def _patch_gevent():
     import gevent.signal
 
     gevent.monkey.patch_all()
+    patch_psycopg()
 
 
 def maybe_patch_concurrency(argv=None, short_opts=None,
