@@ -110,8 +110,10 @@ def _patch_eventlet():
 def _patch_gevent():
     import gevent.monkey
     import gevent.signal
+    from psycogreen.gevent import patch_psycopg
 
     gevent.monkey.patch_all()
+    patch_psycopg()
 
 
 def maybe_patch_concurrency(argv=None, short_opts=None,
